@@ -12,14 +12,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
-    private static final String TITLE = "Coherent Task Management System";
+    private static final String TITLE = "Spring Boot Base setup";
 
     @Bean
     public OpenAPI customOpenAPI() {
 
         License mitLicense = new License().name("Apache 2.0").url("http://springdoc.org");
         Info info = new Info().title(TITLE).version("1.0")
-                .description("Coherent Task Management System")
+                .description("Spring Boot Base setup")
                 .termsOfService("http://swagger.io/terms/")
                 .license(mitLicense);
         return new OpenAPI().info(info)

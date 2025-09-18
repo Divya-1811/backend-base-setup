@@ -1,5 +1,6 @@
 package com.practice.base_setup.config;
 
+import com.practice.base_setup.constant.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -26,6 +27,22 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(https-> https
+                        .requestMatchers(
+                                Constants.SWAGGER_REQUEST_URL_1,
+                                Constants.SWAGGER_REQUEST_URL_2,
+                                Constants.SWAGGER_REQUEST_URL_3,
+                                Constants.SWAGGER_REQUEST_URL_4,
+                                Constants.SWAGGER_REQUEST_URL_5,
+                                Constants.SWAGGER_REQUEST_URL_6,
+                                Constants.SWAGGER_REQUEST_URL_7,
+                                Constants.SWAGGER_REQUEST_URL_8,
+                                Constants.SWAGGER_REQUEST_URL_9,
+                                Constants.SWAGGER_REQUEST_URL_10,
+                                Constants.SWAGGER_REQUEST_URL_11,
+                                Constants.SWAGGER_REQUEST_URL_12,
+                                Constants.SWAGGER_REQUEST_URL_13,
+                                Constants.ACTUATOR_REQUEST_URL
+                        ).permitAll()
                         .requestMatchers(HttpMethod.POST,"/user").permitAll()
                         .requestMatchers("/user/login").permitAll()
                         .anyRequest().authenticated())
