@@ -52,7 +52,7 @@ public class UserController {
         return CommonUtil.getOkResponse("Refresh successful", authResponse);
     }
 
-    @GetMapping("/login/get")
+    @GetMapping
     public ResponseEntity<ApiResponse> getByUserList(){
         List<User> user=userService.getByUserList();
         return CommonUtil.getOkResponse("Success",user);
