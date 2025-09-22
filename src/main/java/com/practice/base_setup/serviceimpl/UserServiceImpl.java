@@ -10,6 +10,8 @@ import com.practice.base_setup.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -46,15 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByUserId(Long id) {
-        return userRepository.findById(id).
-                orElseThrow(()->new CustomException("User not found"));
+    public List<User> getByUserList() {
+        return userRepository.findAll();
     }
 
-    @Override
-    public User getByRole() {
-        Long id=UserContextHolder.getUserDto().getId();
-        return userRepository.findById(id).
-                orElseThrow(()->new CustomException("User not found"));
-    }
 }

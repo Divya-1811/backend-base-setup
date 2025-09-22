@@ -5,6 +5,8 @@ import com.practice.base_setup.dto.UserDto;
 import com.practice.base_setup.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface UserService {
 
@@ -12,7 +14,5 @@ public interface UserService {
 
     User userLogin(LoginDto loginDto);
 
-    User getByUserId(Long id);
-
-    User getByRole();
+    List<User> getByUserList();
 }

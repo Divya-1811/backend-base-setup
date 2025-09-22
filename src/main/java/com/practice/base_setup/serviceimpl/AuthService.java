@@ -1,6 +1,8 @@
 package com.practice.base_setup.serviceimpl;
 
+import com.practice.base_setup.exception.CustomException;
 import com.practice.base_setup.model.User;
+import com.practice.base_setup.repository.UserRepository;
 import com.practice.base_setup.response.AuthResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -15,8 +17,14 @@ import java.util.Map;
 @Service
 public class AuthService {
 
+    private final UserRepository userRepository;
+
     @Value("${spring.jwt.password}")
     private String secret;
+
+    public AuthService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public AuthResponse generateToken(User user) {
         AuthResponse authResponse=new AuthResponse();
@@ -62,5 +70,10 @@ public class AuthService {
         return Jwts.parser().setSigningKey(secret)
                 .parseClaimsJws(jwtToken)
                 .getBody();
+    }
+
+    public User getByUserId(long id) {
+            return userRepository.findById(id)
+                    .orElseThrow(()->new CustomException("User not found"));
     }
 }
